@@ -218,7 +218,10 @@ class btn1 extends StatelessWidget {
               image: AssetImage('assets/img_3.png')
           )
       ),
-      child:TextButton(
+      child:FilledButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+        ),
         onPressed: (){
           print("만들기 버튼 test ");
         },
@@ -233,11 +236,7 @@ class btn1 extends StatelessWidget {
             textAlign: TextAlign.center
         ),
 
-        style: TextButton.styleFrom(
-          minimumSize: Size.zero,
-          padding: EdgeInsets.zero,
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        ),
+
       )
 
 
@@ -260,7 +259,7 @@ class DallE_img extends StatelessWidget {
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
         shrinkWrap: true,
-        children: createGallery(4),
+        children: createGallery2(4),
 
       ),
     );
@@ -295,3 +294,44 @@ List<Widget> createGallery(int numImg) {
 }
 
 
+List<Widget> createGallery2(int numImg) {
+  List<Widget> images = [];
+  List<String> urls = [];
+  urls.add('https://upload.wikimedia.org/wikipedia/commons/f/fe/Vincent_van_Gogh_-_Sunflowers_%281888%2C_National_Gallery_London%29.jpg');
+  urls.add('https://www.qrart.kr:491/wys2/file_attach/2017/08/04/1501830205-47.jpg');
+  urls.add('https://seoartgallery.com/wp-content/uploads/2016/07/%EB%B0%98%EA%B3%A0%ED%9D%90-%EC%B4%88%EC%83%81%ED%99%94-633x767.jpg');
+  urls.add('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201503/10/htm_201503101403340104011.jpg');
+
+
+  Widget image;
+  int i = 0;
+  while (i<numImg) {
+    image = Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(urls[i]),
+          )
+      ),
+      width: 186,
+      height: 186,
+
+    child: FilledButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+      ),
+      onPressed: (){
+        print("만들기 버튼 test ");
+      },
+      child: Text(
+        ''
+      ),
+    ),
+
+    );
+
+    images.add(image);
+    i++;
+  }
+  return images;
+}
